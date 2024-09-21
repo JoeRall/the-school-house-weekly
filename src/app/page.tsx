@@ -86,7 +86,7 @@ function Article({ article }: { article: ArticleWithSlug }) {
   return (
     <Card as="article">
       <Card.Title
-        href={`/articles/${article.slug}`}
+        href={`/${article.folder}/${article.slug}`}
         className="flex items-center"
       >
         <span
