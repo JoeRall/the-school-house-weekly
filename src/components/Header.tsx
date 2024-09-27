@@ -79,11 +79,11 @@ function MoonIcon(props: React.ComponentPropsWithoutRef<"svg">) {
 
 const NavItems = [
   {
-    href: "/madison",
+    href: "/articles/madison",
     label: "Madison",
   },
   {
-    href: "/grace",
+    href: "/articles/grace",
     label: "Grace",
   },
 ]
@@ -165,13 +165,13 @@ function NavItem({
         className={clsx(
           "relative block px-3 py-2 transition",
           isActive
-            ? "dark:text-primary-light text-primary"
-            : "dark:hover:text-primary-light hover:text-primary",
+            ? "text-primary dark:text-primary-light"
+            : "hover:text-primary dark:hover:text-primary-light",
         )}
       >
         {children}
         {isActive && (
-          <span className="dark:from-primary-light/0 dark:via-primary-light/40 dark:to-primary-light/0 absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-primary/0 via-primary/40 to-primary/0" />
+          <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-primary/0 via-primary/40 to-primary/0 dark:from-primary-light/0 dark:via-primary-light/40 dark:to-primary-light/0" />
         )}
       </Link>
     </li>
@@ -209,7 +209,7 @@ function ThemeToggle() {
       onClick={() => setTheme(otherTheme)}
     >
       <SunIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-primary [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-primary" />
-      <MoonIcon className="[@media_not_(prefers-color-scheme:dark)]:fill-primary-light/10 hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:stroke-primary" />
+      <MoonIcon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-primary-light/10 [@media_not_(prefers-color-scheme:dark)]:stroke-primary" />
     </button>
   )
 }

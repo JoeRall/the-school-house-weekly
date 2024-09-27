@@ -9,7 +9,9 @@ function Article({ article }: { article: ArticleWithSlug }) {
   return (
     <article className="md:grid md:grid-cols-4 md:items-baseline">
       <Card className="md:col-span-3">
-        <Card.Title href={`/grace/${article.slug}`}>{article.title}</Card.Title>
+        <Card.Title href={`/articles/${article.slug}`}>
+          {article.title}
+        </Card.Title>
         <Card.Eyebrow
           as="time"
           dateTime={article.date}
@@ -31,18 +33,18 @@ function Article({ article }: { article: ArticleWithSlug }) {
     </article>
   )
 }
+const description = "Madison's' time at the school house."
 
-const description = "Grace's time at the school house."
 export const metadata: Metadata = {
-  title: "Grace",
+  title: "Madison",
   description: description,
 }
 
 export default async function ArticlesIndex() {
-  let articles = await getArticlesForSubFolder("grace", true)
+  let articles = await getArticlesForSubFolder("madison", true)
 
   return (
-    <SimpleLayout title="Grace" intro={description}>
+    <SimpleLayout title="Madison" intro={description}>
       <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
         <div className="flex max-w-3xl flex-col space-y-16">
           {articles.map((article) => (

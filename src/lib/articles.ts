@@ -17,7 +17,7 @@ async function importArticle(
   subFolder: string,
 ): Promise<ArticleWithSlug> {
   let { article } = (await import(
-    `../app/${subFolder}/${articleFilename}`
+    `../app/articles${subFolder ? `/${subFolder}` : ""}/${articleFilename}`
   )) as {
     default: React.ComponentType
     article: Article
@@ -54,11 +54,11 @@ function sortArticles(articles: ArticleWithSlug[]) {
 
 type SubFolder = "madison" | "grace"
 export async function getArticlesForSubFolder(
-  subFolder: SubFolder,
+  subFolder: SubFolder | "" = "",
   sort = false,
 ) {
-  const files = await glob("*/page.mdx", {
-    cwd: `./src/app/${subFolder}`,
+  const files = await glob("**/*/page.mdx", {
+    cwd: `./src/app/articles${subFolder ? `/${subFolder}` : ""}`,
   })
   const articles = await Promise.all(
     files.map((f) => importArticle(f, subFolder)),
@@ -67,14 +67,16 @@ export async function getArticlesForSubFolder(
 }
 
 export async function getAllArticles() {
-  const subFolders: SubFolder[] = ["madison", "grace"]
+  // const subFolders: SubFolder[] = ["madison", "grace"]
 
-  const all: ArticleWithSlug[] = []
+  // const all: ArticleWithSlug[] = []
 
-  for (const folder of subFolders) {
-    const articles = await getArticlesForSubFolder(folder)
-    all.push(...articles)
-  }
+  // for (const folder of subFolders) {
+  //   const articles = await getArticlesForSubFolder(folder)
+  //   all.push(...articles)
+  // }
+
+  const all = await getArticlesForSubFolder("", false)
 
   return sortArticles(all)
 }
