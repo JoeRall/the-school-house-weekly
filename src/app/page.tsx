@@ -92,7 +92,11 @@ function Article({ article }: { article: ArticleWithSlug }) {
         <span
           className={clsx(
             "mr-3 rounded-md bg-primary px-2 capitalize text-white",
-            {},
+            {
+              "bg-green-300 text-green-900": article.folder === "science",
+              "bg-gray-500": article.folder === "library",
+              "bg-pink-300 text-pink-950": article.folder === "music",
+            },
           )}
         >
           {article.folder}
@@ -122,7 +126,7 @@ function SocialLink({
 }
 
 export default async function Home() {
-  let articles = (await getAllArticles()).slice(0, 4)
+  let articles = (await getAllArticles()).slice(0, 8)
 
   return (
     <>
