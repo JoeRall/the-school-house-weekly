@@ -48,8 +48,18 @@ export function SortBy<T>(
   })
 }
 
+function suffix(a: ArticleWithSlug) {
+  return a.folder === "madison"
+    ? "1"
+    : a.folder == "grace"
+      ? "0"
+      : `-1${a.folder}`
+}
 function sortArticles(articles: ArticleWithSlug[]) {
   return articles.sort((a, z) => +new Date(z.date) - +new Date(a.date))
+  // return articles.sort((a, z) =>
+  //   `${a.date}_${suffix(a)}` < `${z.date}_${suffix(z)}` ? 1 : -1,
+  // )
 }
 
 type SubFolder = "madison" | "grace"

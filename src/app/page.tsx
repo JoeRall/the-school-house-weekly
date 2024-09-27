@@ -126,7 +126,7 @@ function SocialLink({
 }
 
 export default async function Home() {
-  let articles = (await getAllArticles()).slice(0, 8)
+  let articles = (await getAllArticles()).slice(0, 5)
 
   return (
     <>
