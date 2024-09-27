@@ -5,7 +5,7 @@ interface Article {
   description: string
   author: string
   date: string
-  folder: "madison" | "grace"
+  folder: "madison" | "grace" | "music"
 }
 
 export interface ArticleWithSlug extends Article {
